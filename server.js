@@ -11,5 +11,3 @@ server.listen(PORT,(error)=>{
         console.log(`Error Code: ${error}`);
     }
 })
-
-module.exports=server;
