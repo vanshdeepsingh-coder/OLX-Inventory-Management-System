@@ -11,3 +11,7 @@ server.listen(PORT,(error)=>{
         console.log(`Error Code: ${error}`);
     }
 })
+
+server.get('/',async(req,res)=>{
+    res.send('/home.index');
+})
