@@ -1,5 +1,7 @@
-const express = require('express');
-const server = express();
+const express=require('express');
+const server=express();
+const path=require('path');
+const fs=require('fs');
 const PORT=3000;
 
 server.listen(PORT,(error)=>{
@@ -12,6 +14,12 @@ server.listen(PORT,(error)=>{
     }
 })
 
-server.get('/',async(req,res)=>{
-    res.send('/home.index');
+server.get('/',(req,res)=>{
+    const homePage=fs.readFileSync('home.html');
+    res.end(homePage.toString());
+})
+
+server.get('/about',(req,res)=>{
+    const aboutPage=fs.readFileSync('about.html');
+    res.end(aboutPage.toString())
 })
