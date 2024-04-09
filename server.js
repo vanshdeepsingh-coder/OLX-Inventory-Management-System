@@ -1,6 +1,5 @@
 const express=require('express');
 const updateInventory=require('./updateInventory');
-const http=require('http');
 const fs=require('fs');
 const server=express();
 const PORT=3000;
@@ -25,10 +24,5 @@ server.get('/',(req,res)=>{
 })
 
 updateInventory('data.json');
-
-// server.get('/about',(req,res)=>{
-//     const aboutPage=fs.readFileSync('about.html');
-//     res.end(aboutPage.toString())
-// })
 
 module.exports=server;
