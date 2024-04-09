@@ -1,5 +1,6 @@
 const express=require('express');
 const updateInventory=require('./updateInventory');
+const createInventory=require('./createInventory');
 const fs=require('fs');
 const server=express();
 const PORT=3000;
@@ -19,10 +20,12 @@ function readJSONFileSync(filepath){
     return JSON.parse(file)
 }
 
+createInventory('data.json');
+
 server.get('/',(req,res)=>{
     res.send(readJSONFileSync('data.json'));
 })
 
-updateInventory('data.json');
+// updateInventory('data.json');
 
 module.exports=server;
