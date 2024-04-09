@@ -7,6 +7,7 @@ module.exports=function updateInventory(filepath){
     for(let i in content.inventory){
         if(content.inventory[i].stockKeepUnit==100){
             content.inventory[i].status='inactive'
+            content.inventory[i].location='Dehradun'
             fs.writeFileSync('data.json',JSON.stringify(content));
             break;
         }
