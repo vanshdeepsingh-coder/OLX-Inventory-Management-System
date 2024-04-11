@@ -1,32 +1,18 @@
-export default class InventoryController {
-    constructor(inventoryService) {
-        this.inventoryService = inventoryService;
+const Inventory = require('./inventoryModel');
+
+class InventoryController {
+    constructor() {
+        this.inventoryModel = new Inventory();
     }
 
-    create(request) {
-        const isValid = this.validateRequest(request);
-        if (!isValid) {
-            return this.badRequestError();
+    async createInventory(req, res) {
+        try {
+            const InventoryModel = this.inventoryModel.getModel();
+            const inventoryData = req.body;
+            const newInventory = new InventoryModel(inventoryData);
+            await newInventory.save();
+            res.status(201).json(newInventory);
+        } catch (err) {
+            res.status(400).json({ message: err.message });
         }
-        const inventoryId = this.inventoryService.create(request);
-        return this.createInventoryResponse(inventoryId);
     }
-
-    update(request) {
-        const isValid = this.validateRequest(request);
-        if (!isValid) {
-            return this.badRequestError();
-        }
-        const updatedInventory = this.inventoryService.update(request);
-        return this.createInventoryResponse(updatedInventory.id);
-    }
-
-    delete(id) {
-        this.inventoryService.delete(id);
-        return { message: "Inventory deleted successfully" };
-    }
-
-    createInventoryResponse(inventoryId) {
-        return { id: inventoryId };
-    }
-}
