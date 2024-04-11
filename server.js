@@ -11,8 +11,8 @@ class Server {
         this.connectToDB();
 
         this.app.use(bodyParser.json());
-
-        this.app.use(routes);
+        
+        this.app.use(routes.initializeRouter());
 
         this.startServer();
     }
