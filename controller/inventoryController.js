@@ -17,6 +17,16 @@ class InventoryController {
         }
     }
 
+    async getInventory(req, res) {
+        try {
+            const InventoryModel = this.inventoryModel.getModel();
+            const inventoryItems = await InventoryModel.find();
+            res.json(inventoryItems);
+        } catch (err) {
+            res.status(400).json({ message: err.message });
+        }
+    }
+
     async updateInventory(req, res) {
         try {
             const InventoryModel = this.inventoryModel.getModel();
