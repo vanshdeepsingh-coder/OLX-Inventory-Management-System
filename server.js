@@ -26,3 +26,12 @@ class Server {
         .then(() => console.log('MongoDB Connected'))
         .catch(err => console.log(err));
     }
+
+    startServer() {
+        this.app.listen(this.PORT, () => {
+            console.log(`Server is running on port ${this.PORT}`);
+        });
+    }
+}
+
+const server = new Server();
