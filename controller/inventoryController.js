@@ -1,4 +1,4 @@
-const Inventory = require('./inventoryModel');
+const Inventory = require('../model/inventoryModel.js');
 
 class InventoryController {
     constructor() {
