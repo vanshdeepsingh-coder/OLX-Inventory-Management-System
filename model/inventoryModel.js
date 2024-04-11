@@ -30,3 +30,10 @@ class Inventory {
             }
         });
     }
+
+    getModel() {
+        return this.InventoryModel;
+    }
+}
+
+module.exports = Inventory;
