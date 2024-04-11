@@ -3,8 +3,6 @@ const InventoryController = require('../controller/inventoryController');
 
 class Routes{
 
-    
-
     initializeRouter(){
         const router=express.Router();
 
