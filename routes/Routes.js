@@ -1,5 +1,5 @@
-const express = require('express');
-const InventoryController = require('../controller/inventoryController');
+import express from 'express';
+import InventoryController from '../controller/inventoryController.js';
 
 class Routes{
 
@@ -9,13 +9,13 @@ class Routes{
         const inventoryController = new InventoryController()
 
         router.post('/inventory', inventoryController.createInventory.bind(inventoryController));
-        router.put('/inventory/:sku', inventoryController.updateInventory.bind(inventoryController));
-        router.delete('/inventory/:sku', inventoryController.deleteInventory.bind(inventoryController));
-        router.get('/',inventoryController.getInventory.bind(inventoryController));
+        router.put('/inventory/update', inventoryController.updateInventory.bind(inventoryController));
+        router.delete('/inventory/delete',inventoryController.deleteInventory.bind(inventoryController));
+        router.get('/', inventoryController.getInventory.bind(inventoryController));
 
         return router;
     }
 }
 
 const routes=new Routes();
-module.exports = routes;
+export default routes;

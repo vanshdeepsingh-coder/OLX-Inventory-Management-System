@@ -1,4 +1,4 @@
-const Inventory = require('../model/inventoryModel.js');
+import Inventory from '../model/inventoryModel.js';
 
 class InventoryController {
     constructor() {
@@ -30,7 +30,7 @@ class InventoryController {
     async updateInventory(req, res) {
         try {
             const InventoryModel = this.inventoryModel.getModel();
-            const sku = req.params.sku;
+            const {sku} = req.body;
             const inventoryData = req.body;
             const updatedInventory = await InventoryModel.findOneAndUpdate({ sku }, inventoryData, { new: true });
             res.json(updatedInventory);
@@ -42,13 +42,13 @@ class InventoryController {
     async deleteInventory(req, res) {
         try {
             const InventoryModel = this.inventoryModel.getModel();
-            const sku = req.params.sku;
+            const {sku} = req.body;
             await InventoryModel.findOneAndDelete({ sku });
             res.json({ message: 'Inventory deleted successfully' });
         } catch (err) {
             res.status(400).json({ message: err.message });
         }
     }
-}
+};
 
-module.exports = InventoryController;
+export default InventoryController;

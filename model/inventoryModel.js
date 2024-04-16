@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 class Inventory {
     constructor() {
@@ -36,4 +36,4 @@ class Inventory {
     }
 }
 
-module.exports = Inventory;
+export default Inventory;
