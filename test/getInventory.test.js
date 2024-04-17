@@ -46,4 +46,34 @@ describe('GET /', async () => {
 
             done();
     });
+
+    it('should return an empty array if there are no inventory items', async (done) => {
+        request
+            .get('/')
+            .expect(200)
+            .end((err, res) => {
+                if (err) return done(err);
+                
+                expect(res.status).to.equal(200);
+                expect(res.body).to.be.an('array');
+                expect(res.body).to.be.empty;
+            });
+
+            done();
+    });
+
+    it('should return status 404 for an invalid endpoint', (done) => {
+        request
+            .get('/invalid-endpoint')
+            .expect(404, done);
+    });
+
+    it('should handle server errors', (done) => {
+        request
+            .get('/')
+            .query({ error: 'true' }) 
+            .expect(500);
+
+        done();
+    });
 });

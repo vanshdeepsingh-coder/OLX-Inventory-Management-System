@@ -1,5 +1,8 @@
 import Inventory from '../model/inventoryModel.js';
 
+const badRequestError=400;
+const successfullyPostCode=201;
+
 class InventoryController {
     constructor() {
         this.inventoryModel = new Inventory();
@@ -11,9 +14,9 @@ class InventoryController {
             const inventoryData = req.body;
             const newInventory = new InventoryModel(inventoryData);
             await newInventory.save();
-            res.status(201).json(newInventory);
+            res.status(successfullyPostCode).json(newInventory);
         } catch (err) {
-            res.status(400).json({ message: err.message });
+            res.status(badRequestError).json({ message: err.message });
         }
     }
 
@@ -23,7 +26,7 @@ class InventoryController {
             const inventoryItems = await InventoryModel.find();
             res.json(inventoryItems);
         } catch (err) {
-            res.status(400).json({ message: err.message });
+            res.status(badRequestError).json({ message: err.message });
         }
     }
 
@@ -35,7 +38,7 @@ class InventoryController {
             const updatedInventory = await InventoryModel.findOneAndUpdate({ sku }, inventoryData, { new: true });
             res.json(updatedInventory);
         } catch (err) {
-            res.status(400).json({ message: err.message });
+            res.status(badRequestError).json({ message: err.message });
         }
     }
 
@@ -46,7 +49,7 @@ class InventoryController {
             await InventoryModel.findOneAndDelete({ sku });
             res.json({ message: 'Inventory deleted successfully' });
         } catch (err) {
-            res.status(400).json({ message: err.message });
+            res.status(badRequestError).json({ message: err.message });
         }
     }
 };
