@@ -8,10 +8,10 @@ class Routes{
 
         const inventoryController = new InventoryController()
 
-        router.post('/inventory', inventoryController.createInventory.bind(inventoryController));
-        router.put('/inventory/update', inventoryController.updateInventory.bind(inventoryController));
-        router.delete('/inventory/delete',inventoryController.deleteInventory.bind(inventoryController));
-        router.get('/', inventoryController.getInventory.bind(inventoryController));
+        router.post('/inventories/new', inventoryController.create.bind(inventoryController));
+        router.put('/inventories/::{id}', inventoryController.update.bind(inventoryController));
+        router.delete('/inventories/:{id}',inventoryController.delete.bind(inventoryController));
+        router.get('/inventories', inventoryController.getAll.bind(inventoryController));
 
         return router;
     }

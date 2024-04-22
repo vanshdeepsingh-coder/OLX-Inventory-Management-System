@@ -1,7 +1,7 @@
 import express from 'express';
 import supertest from 'supertest';
 import routes from '../routes/Routes.js';
-import mockInventoryData from '../mockInventory/mockInventoryData.js';
+import mockInventoryData from './mockInventory/mockInventoryData.js';
 
 const app = express();
 
